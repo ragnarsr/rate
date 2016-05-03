@@ -1,0 +1,95 @@
+*:focus {
+    outline: none;
+}
+
+a, a:hover, a:focus, a:active {
+	text-decoration: none;
+	outline: none;
+}
+
+.row {
+	/*margin-right: auto;
+	margin-left: auto;*/
+	margin-bottom: 15px;
+}
+
+.centered {
+	/*float: none;*/ /*What does this do?*/
+	position: relative;
+	margin: 0 auto;
+	margin-top: 15px;
+	margin-bottom: 15px;
+
+}
+
+#header-nav {
+	height: 80%;
+	background-color: #eee;
+	border-radius: 0;
+	border: 0;
+}
+
+.audioContainer {
+	position: relative;
+	width: 90%;
+	margin: 0 auto;
+	margin-bottom: 15px;
+}
+
+.audioDummy {
+	padding-top: 100%; 
+	margin: 0 auto;
+	margin-bottom: 15px;
+}
+
+.audioElement {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+#audioControl {
+	color: #fff;
+}
+
+#logo-img {
+	background: url('../imgs/logo.png') no-repeat;
+	background-size: 100%;
+	width: 50px;
+	height: 50px;
+}
+
+.navbar-brand h3 {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  color: black;
+  text-shadow: 1px 1px 1px #222;
+}
+
+.navbar-brand a:hover, .navbar-brand a:focus {
+	text-decoration: none;
+}
+
+.btn-circle {
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 48px;
+  line-height: 0.82;
+  border-radius: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -40px;
+  margin-left: -40px;
+  background-color: rgba(155,155,155,0.2);
+}
+
+
+
