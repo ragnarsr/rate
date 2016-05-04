@@ -6,7 +6,7 @@ jQuery.getJSON("http://api.sr.se/api/v2/channels/?liveaudiotemplateid=2&audioqua
 	var arr = [];
 	for (i=0; i < data.channels.length; i++) {
 		if (data.channels[i].channeltype != 'Extrakanaler') {
-			arr.push("<li><a href='javascript:;' onclick='changeChannel("+i+")'>"+data.channels[i].name+"</a></li>");
+			arr.push("<li data-toggle='collapse' data-target='#collapsable-nav'><a href='javascript:;' onclick='changeChannel("+i+")'>"+data.channels[i].name+"</a></li>");
 		}
 	}
 
