@@ -1,16 +1,21 @@
 
 
-var kanal = 33;
-jQuery.getJSON("http://api.sr.se/api/v2/channels/?liveaudiotemplateid=2&audioquality=hi&format=json&indent=true&pagination=false",function(data) {
+var kanal = 33; // Default channel
+var url = "http://api.sr.se/api/v2/channels/?liveaudiotemplateid=2&audioquality=hi&format=json&indent=true&pagination=false";
 
-	var arr = [];
+var request = new XMLHttpRequest();
+request.open('GET', url, true);
+request.onload = function() {
+	var data = JSON.parse(request.response);
+	
+	var channelArray = [];
 	for (i=0; i < data.channels.length; i++) {
 		if (data.channels[i].channeltype != 'Extrakanaler') {
-			arr.push("<li data-toggle='collapse' data-target='#collapsable-nav'><a href='javascript:;' onclick='changeChannel("+i+")'>"+data.channels[i].name+"</a></li>");
+			channelArray.push("<li data-toggle='collapse' data-target='#collapsable-nav'><a href='javascript:;' onclick='changeChannel("+i+")'>"+data.channels[i].name+"</a></li>");
 		}
 	}
 
-	document.getElementById('nav-list').innerHTML = arr.join("");
+	document.getElementById('nav-list').innerHTML = channelArray.join(""); // Get rid of commas and insert list
 
 	var channelData = data.channels[kanal];
 
@@ -19,9 +24,8 @@ jQuery.getJSON("http://api.sr.se/api/v2/channels/?liveaudiotemplateid=2&audioqua
 	var audio = document.getElementById('audioSource');
 	audio.src = channelData.liveaudio.url;
 	document.getElementById('programTitle').innerHTML = channelData.name;
-
-});
-
+};
+request.send();
 
 var yourAudio = document.getElementById('yourAudio'),
     ctrl = document.getElementById('audioControl');
@@ -39,8 +43,11 @@ ctrl.onclick = function () {
 };
 
 function changeChannel (channel) {
- 	jQuery.getJSON("http://api.sr.se/api/v2/channels/?liveaudiotemplateid=2&audioquality=hi&format=json&indent=true&pagination=false",function(data) {
-		var channelData = data.channels[channel];
+	var request = new XMLHttpRequest();
+	request.open('GET', url, true);
+	request.onload = function() {
+		var data = JSON.parse(request.response);
+ 			var channelData = data.channels[channel];
 		document.getElementById('pic-show').style.background = 'url('+channelData.image+')';
 		document.getElementById('pic-show').style.backgroundSize = '100%';
 		var audio = document.getElementById('audioSource');
@@ -54,5 +61,6 @@ function changeChannel (channel) {
 			yourAudio.load();
 			yourAudio.play();
 		}
-	});
+	};
+	request.send();
 };
